@@ -1,11 +1,15 @@
-package com.example.springboot2_essentials.start;
+package com.example.springboot2_essentials;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 
-@EnableAutoConfiguration
-@ComponentScan(basePackages = "com.example.springboot2_essentials")
+@SpringBootApplication // O @SpringBootApplication já possui todas essas configurações:
+//@EnableAutoConfiguration
+//@ComponentScan
+//@Configuration
 public class ApplicationStart {
 
     public static void main(String[] args) {
