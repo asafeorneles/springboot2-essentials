@@ -1,6 +1,7 @@
 package com.example.springboot2_essentials.service;
 
 import com.example.springboot2_essentials.domain.Anime;
+import com.example.springboot2_essentials.mapper.AnimeMapper;
 import com.example.springboot2_essentials.repository.AnimeRepository;
 import com.example.springboot2_essentials.requests.AnimePostRequestBody;
 import com.example.springboot2_essentials.requests.AnimePutRequestBody;
@@ -17,6 +18,8 @@ public class AnimeService {
 
     private final AnimeRepository animeRepository;
 
+    private final AnimeMapper animeMapper;
+
     public List<Anime> listAll() {
         return animeRepository.findAll();
     }
@@ -27,7 +30,7 @@ public class AnimeService {
     }
 
     public Anime save(AnimePostRequestBody animePostRequestBody) {
-        return animeRepository.save(Anime.builder().name(animePostRequestBody.name()).build());
+        return animeRepository.save(animeMapper.toAnime(animePostRequestBody));
     }
 
     public void delete(Long id) {
@@ -43,9 +46,8 @@ public class AnimeService {
 
     public void replace(AnimePutRequestBody animePutRequestBody) {
         Anime byId = findByIdOrThrowBadRequest(animePutRequestBody.id());
-        Anime anime = Anime.builder().id(byId.getId())
-                .name(animePutRequestBody.name())
-                .build();
+        Anime anime = animeMapper.toAnime(animePutRequestBody);
+        anime.setId(byId.getId());
         animeRepository.save(anime);
     }
 }
