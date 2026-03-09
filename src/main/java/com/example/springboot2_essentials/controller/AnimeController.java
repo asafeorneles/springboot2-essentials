@@ -5,6 +5,7 @@ import com.example.springboot2_essentials.requests.AnimePostRequestBody;
 import com.example.springboot2_essentials.requests.AnimePutRequestBody;
 import com.example.springboot2_essentials.service.AnimeService;
 import com.example.springboot2_essentials.util.DataUtil;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
@@ -40,7 +41,7 @@ public class AnimeController {
     }
 
     @PostMapping
-    public ResponseEntity<Anime> save(@RequestBody AnimePostRequestBody animePostRequestBody){
+    public ResponseEntity<Anime> save(@RequestBody @Valid AnimePostRequestBody animePostRequestBody){
         return new ResponseEntity<>(animeService.save(animePostRequestBody), HttpStatus.CREATED);
     }
 
