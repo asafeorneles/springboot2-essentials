@@ -3,6 +3,7 @@ package com.example.springboot2_essentials.requests;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.URL;
 
 /*
 NotNull apenas proíbe valores null, NotEmpty exige que coleções/strings não sejam nulas nem vazias (""),
@@ -13,6 +14,9 @@ public record AnimePostRequestBody(
     //  @NotBlank
         @NotNull(message = "The Anime can not be null")
         @NotEmpty(message = "The Anime can not be empty")
-        String name
+        String name,
+        @URL(message = "The URL is not valid")
+        String url
+
 ) {
 }

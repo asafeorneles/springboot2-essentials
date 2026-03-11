@@ -1,4 +1,4 @@
-# só passa o stacktrace pro front se passarmos por parâmetro: trace=true
+# só passa o stacktrace pro front se passarmos por parâmetro: trace=true na url
 server:
   error:
     include-stacktrace: on_param
