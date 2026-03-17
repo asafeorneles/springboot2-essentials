@@ -10,6 +10,7 @@ import java.util.List;
 
 @Configuration
 public class DevDojoWebMvcConfigurer implements WebMvcConfigurer {
+    // Modificar o "Padrão" do Pageable
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
         PageableHandlerMethodArgumentResolver pageHandler = new PageableHandlerMethodArgumentResolver();
