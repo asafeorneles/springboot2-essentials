@@ -7,10 +7,10 @@ import com.example.springboot2_essentials.repository.AnimeRepository;
 import com.example.springboot2_essentials.requests.AnimePostRequestBody;
 import com.example.springboot2_essentials.requests.AnimePutRequestBody;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -22,8 +22,8 @@ public class AnimeService {
 
     private final AnimeMapper animeMapper;
 
-    public List<Anime> listAll() {
-        return animeRepository.findAll();
+    public Page<Anime> listAll(Pageable pageable) {
+        return animeRepository.findAll(pageable);
     }
 
     public List<Anime> findByName(String name) {
@@ -37,6 +37,11 @@ public class AnimeService {
 
     @Transactional
     public Anime save(AnimePostRequestBody animePostRequestBody) {
+        // Com o builder ou setter, salva com os dados normalmente
+//        Anime anime = new Anime();
+//        anime.setName(animePostRequestBody.name());
+//
+//        return animeRepository.save(anime);
         return animeRepository.save(animeMapper.toAnime(animePostRequestBody));
     }
 

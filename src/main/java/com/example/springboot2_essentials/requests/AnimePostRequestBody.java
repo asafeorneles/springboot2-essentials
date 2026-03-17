@@ -14,9 +14,7 @@ public record AnimePostRequestBody(
     //  @NotBlank
         @NotNull(message = "The Anime can not be null")
         @NotEmpty(message = "The Anime can not be empty")
-        String name,
-        @URL(message = "The URL is not valid")
-        String url
+        String name
 
 ) {
 }

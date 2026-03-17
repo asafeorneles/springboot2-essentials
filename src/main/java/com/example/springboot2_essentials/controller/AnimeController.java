@@ -8,6 +8,8 @@ import com.example.springboot2_essentials.util.DataUtil;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,9 +27,8 @@ public class AnimeController {
     private final AnimeService animeService;
 
     @GetMapping
-    public ResponseEntity<List<Anime>> list() {
-        log.info(dataUtil.formatterDateTimeDataBaseStyle(LocalDateTime.now()));
-        return ResponseEntity.ok(animeService.listAll());
+    public ResponseEntity<Page<Anime>> list(Pageable pageable) {
+        return ResponseEntity.ok(animeService.listAll(pageable));
     }
 
     @GetMapping(path = "/find")
