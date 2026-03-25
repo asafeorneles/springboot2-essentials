@@ -26,6 +26,10 @@ public class AnimeService {
         return animeRepository.findAll(pageable);
     }
 
+    public List<Anime> listAllNonPageable() {
+        return animeRepository.findAll();
+    }
+
     public List<Anime> findByName(String name) {
         return animeRepository.findByName(name);
     }
@@ -37,23 +41,18 @@ public class AnimeService {
 
     @Transactional
     public Anime save(AnimePostRequestBody animePostRequestBody) {
-        // Com o builder ou setter, salva com os dados normalmente
-//        Anime anime = new Anime();
-//        anime.setName(animePostRequestBody.name());
-//
-//        return animeRepository.save(anime);
         return animeRepository.save(animeMapper.toAnime(animePostRequestBody));
     }
 
     public void delete(Long id) {
         animeRepository.delete(findByIdOrThrowBadRequest(id));
     }
-
     // Eu uso esta abordagem:
 //    public void replace(AnimePutRequestBody animePutRequestBody) {
 //        Anime byId = findByIdOrThrowBadRequest(animePutRequestBody.id());
 //        byId.setName(animePutRequestBody.name());
 //        animeRepository.save(byId);
+
 //    }
 
     public void replace(AnimePutRequestBody animePutRequestBody) {
