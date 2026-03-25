@@ -74,7 +74,7 @@ public class SpringClient {
 
     }
 
-    public static HttpHeaders createHttpHeader(){
+    public static HttpHeaders createHttpHeader() {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         // Caso precise de autenticação, posso passar o token via setBearerAuth():
